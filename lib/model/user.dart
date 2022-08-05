@@ -21,10 +21,10 @@ class User {
   String? company;
   String? blog;
   String? location;
-  Null? email;
-  Null? hireable;
+  String? email;
+  String? hireable;
   String? bio;
-  Null? twitterUsername;
+  String? twitterUsername;
   int? publicRepos;
   int? publicGists;
   int? followers;
