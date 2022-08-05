@@ -3,14 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:github_repo_user/view/initial_page.dart';
 
 void main() {
-  runApp(App());
+  runApp(const App());
 }
 
 class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Github users repo',
       debugShowCheckedModeBanner: false,
       home: InitialPage(),
