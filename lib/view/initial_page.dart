@@ -4,7 +4,15 @@ import 'package:github_repo_user/view/components/card_user.dart';
 import 'package:github_repo_user/view_model/list_users.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class InitialPage extends StatelessWidget {
+class InitialPage extends StatefulWidget {
+
+  const InitialPage({Key? key}) : super(key: key);
+
+  @override
+  State<InitialPage> createState() => _InitialPageState();
+}
+
+class _InitialPageState extends State<InitialPage> {
   ListUsersViewModel listUsersViewModel = ListUsersViewModel();
 
   @override
@@ -37,7 +45,7 @@ class InitialPage extends StatelessWidget {
               itemCount: users.length,
               crossAxisCount: 2,
               itemBuilder: (_, index) {
-                User user = users![index];
+                User user = users[index];
                 return CardUser(user: user);
               },
             );
