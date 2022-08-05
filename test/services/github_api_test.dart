@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:github_repo_user/model/user.dart';
 import 'package:github_repo_user/services/github_api.dart';
