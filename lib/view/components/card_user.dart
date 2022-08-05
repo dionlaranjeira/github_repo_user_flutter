@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:github_repo_user/model/user.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:github_repo_user/view/user_details_page.dart';
 
 class CardUser extends StatelessWidget {
   final User user;
@@ -13,7 +14,8 @@ class CardUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: null,
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (context)=>UserDetailsPage(userLoginId: user.login!,))),
       child: Card(
         elevation: 10,
         shape: RoundedRectangleBorder(

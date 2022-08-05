@@ -14,7 +14,7 @@ class InitialPage extends StatefulWidget {
 
 class _InitialPageState extends State<InitialPage> {
   ListUsersViewModel listUsersViewModel = ListUsersViewModel();
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
