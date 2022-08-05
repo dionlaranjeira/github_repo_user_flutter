@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:github_repo_user/model/user.dart';
 import 'package:github_repo_user/services/github_api.dart';
+import 'package:github_repo_user/view_model/list_users.dart';
 
 void main(){
 
@@ -10,7 +12,7 @@ void main(){
     final List<Map<String, dynamic>> response = await api.getRandomUsers();
   });
 
-  test("Shold return an List<User>", () async{
+  test("Should return a List<User>", () async{
 
     final response  = await api.getRandomUsers();
 
@@ -22,5 +24,13 @@ void main(){
     }
 
   });
+
+  test("Should show a List<User> from view_model", () async {
+    ListUsersViewModel listUsersViewModel = ListUsersViewModel();
+
+    await listUsersViewModel.getRandomUsers();
+    listUsersViewModel.users;
+
+  } );
 
 }
