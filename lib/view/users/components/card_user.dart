@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:github_repo_user/model/user.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:github_repo_user/view/user_details_page.dart';
+import 'package:github_repo_user/view/users/user_details_page.dart';
 
 class CardUser extends StatelessWidget {
   final User user;

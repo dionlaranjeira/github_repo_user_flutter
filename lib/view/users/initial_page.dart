@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:github_repo_user/model/user.dart';
-import 'package:github_repo_user/view/components/card_user.dart';
+import 'package:github_repo_user/view/users/components/card_user.dart';
 import 'package:github_repo_user/view_model/list_users.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 

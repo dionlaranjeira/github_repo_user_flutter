@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:github_repo_user/model/user_details.dart';
+import 'package:github_repo_user/view/repos/user_repositorys.dart';
 import 'package:github_repo_user/view_model/user_data.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -97,7 +98,8 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                           ],),
 
                           ElevatedButton(
-                              onPressed: (){},
+                              onPressed:  () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context)=>UserRepositorys(userLoginId: "dionlaranjeira"))),
                               child: Row(
                                 children: [
                                   const FaIcon(FontAwesomeIcons.folder),
@@ -134,6 +136,8 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                           //Todo: add 5 user repositories in list view horizontal
 
                           Text("Github user since " + user.createdAt!)
+
+
 
                         ],
                       ),
