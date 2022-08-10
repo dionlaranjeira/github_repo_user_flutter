@@ -1,8 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:github_repo_user/model/user.dart';
 import 'package:github_repo_user/model/user_details.dart';
 import 'package:github_repo_user/view_model/user_data.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class UserDetailsPage extends StatefulWidget {
   final String userLoginId;
@@ -24,7 +23,8 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
           title: textAppBar(context),
         ),
         body: FutureBuilder(
-          future: userViewModel.getUserInformation(widget.userLoginId),
+          // future: userViewModel.getUserInformation(widget.userLoginId),
+          future: userViewModel.getUserInformation("dionlaranjeira"),
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
@@ -33,41 +33,112 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                 return buildColumnLoading();
               case ConnectionState.done:
                 UserDetail user = userViewModel.userDetail!;
-                return MediaQuery(
-                  data: const MediaQueryData(),
-                  child: Scaffold(
+                return Scaffold(
                     backgroundColor: const Color(0xffdddddd),
                     body: SingleChildScrollView(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              CachedNetworkImage(
-                                imageUrl: user.avatarUrl!,
-                                placeholder: (context, url) =>
-                                    const CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
+                              Row(
+                                children: [
+                                  CircleAvatar(
+                                      maxRadius: 30,
+                                      backgroundColor: Theme.of(context).dividerColor,
+                                      backgroundImage:
+                                      NetworkImage(user.avatarUrl!)),
+                                  const SizedBox(width: 16),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(user.name!.toUpperCase()),
+                                      Text(user.login!),
+                                    ],
+                                  ),
+                                ],
                               ),
-                              Positioned(
-                                bottom: -20,
-                                left: 0,
-                                right: 0,
-                                child: Center(
-                                  child: containerInforsUser(context, user),
-                                ),
+                        Text(user.bio!),
+                          Row(children: [
+                            const FaIcon(FontAwesomeIcons.building),
+                            SizedBox(width: 8),
+                            Text(user.company!),
+                            SizedBox(width: 16),
+                            const FaIcon(FontAwesomeIcons.locationDot),
+                            SizedBox(width: 8),
+                            Text(user.location!),
+                          ],),
+
+                          Row(children: [
+                            const FaIcon(FontAwesomeIcons.link),
+                            Text(user.blog!),
+                          ],),
+
+                          Row(children: [
+                            const FaIcon(FontAwesomeIcons.envelope),
+                            Text(user.email!),
+                          ],),
+
+                          Row(children: [
+                            const FaIcon(FontAwesomeIcons.link),
+                            Text(user.blog!),
+                          ],),
+
+                          Row(children: [
+                          const FaIcon(FontAwesomeIcons.twitter),
+                          Text("@" + user.twitterUsername!),
+                        ],),
+
+                          Row(children: [
+                            const FaIcon(FontAwesomeIcons.user),
+                            Text(user.followers.toString(), style: TextStyle(fontWeight: FontWeight.bold),),
+                            Text(" Followers - "),
+                            Text(user.following.toString(), style: TextStyle(fontWeight: FontWeight.bold),),
+                            Text(" Following"),
+                          ],),
+
+                          ElevatedButton(
+                              onPressed: (){},
+                              child: Row(
+                                children: [
+                                  const FaIcon(FontAwesomeIcons.folder),
+                                  const SizedBox(width: 8),
+                                  const Text("Repositories"),
+                                  Expanded(child: Container()),
+                                  Text(user.publicRepos.toString())
+                                ],
                               )
-                            ],
                           ),
-                          const SizedBox(height: 90),
-                          paddingExtraInforsUser(),
-                          const SizedBox(height: 20),
+
+                          ElevatedButton(
+                              onPressed: (){},
+                              child: Row(
+                                children: [
+                                  const FaIcon(FontAwesomeIcons.heart),
+                                  const SizedBox(width: 8),
+                                  const Text("Favorites")
+                                ],
+                              )
+                          ),
+
+                          ElevatedButton(
+                              onPressed: (){},
+                              child: Row(
+                                children: [
+                                  const FaIcon(FontAwesomeIcons.building),
+                                  const SizedBox(width: 8),
+                                  const Text("Organizations")
+                                ],
+                              )
+                          ),
+
+                          //Todo: add 5 user repositories in list view horizontal
+
+                          Text("Github user since " + user.createdAt!)
+
                         ],
                       ),
                     ),
-                  ),
-                );
+                  );
               case ConnectionState.none:
                 return buildInforText('Internet connection problems.');
               default:
@@ -105,71 +176,5 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
   Center buildInforText(String text) =>
       const Center(child: Text('Internet connection problems.'));
 
-  Container containerInforsUser(BuildContext context, UserDetail user) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.9,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(32)),
-        boxShadow: [
-          BoxShadow(color: Colors.white, spreadRadius: 4),
-        ],
-      ),
-      child: Column(
-        children: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.8,
-            child: Text(
-              user.name! ?? "Not informed",
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  fontSize: 14),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.link, size: 14),
-              const SizedBox(
-                width: 10,
-              ),
-              Text(
-                user.url!,
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black.withOpacity(0.6)),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.group, size: 14),
-              const SizedBox(
-                width: 10,
-              ),
-              Text(
-                "Type: " + user.type!,
-                style: TextStyle(color: Colors.black.withOpacity(0.6)),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
 
-  Padding paddingExtraInforsUser() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16),
-      child: Text(
-        "opa 4",
-        textAlign: TextAlign.center,
-        style: const TextStyle(
-          color: Colors.cyanAccent,
-          fontSize: 16,
-        ),
-      ),
-    );
-  }
 }
