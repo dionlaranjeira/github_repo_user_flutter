@@ -1,4 +1,4 @@
-class User {
+class UserDetail {
   String? login;
   int? id;
   String? nodeId;
@@ -17,8 +17,22 @@ class User {
   String? receivedEventsUrl;
   String? type;
   bool? siteAdmin;
+  String? name;
+  String? company;
+  String? blog;
+  String? location;
+  String? email;
+  String? hireable;
+  String? bio;
+  String? twitterUsername;
+  int? publicRepos;
+  int? publicGists;
+  int? followers;
+  int? following;
+  String? createdAt;
+  String? updatedAt;
 
-  User(
+  UserDetail(
       {this.login,
         this.id,
         this.nodeId,
@@ -36,9 +50,23 @@ class User {
         this.eventsUrl,
         this.receivedEventsUrl,
         this.type,
-        this.siteAdmin});
+        this.siteAdmin,
+        this.name,
+        this.company,
+        this.blog,
+        this.location,
+        this.email,
+        this.hireable,
+        this.bio,
+        this.twitterUsername,
+        this.publicRepos,
+        this.publicGists,
+        this.followers,
+        this.following,
+        this.createdAt,
+        this.updatedAt});
 
-  User.fromJson(Map<String, dynamic> json) {
+  UserDetail.fromJson(Map<String, dynamic> json) {
     login = json['login'];
     id = json['id'];
     nodeId = json['node_id'];
@@ -57,6 +85,20 @@ class User {
     receivedEventsUrl = json['received_events_url'];
     type = json['type'];
     siteAdmin = json['site_admin'];
+    name = json['name'] ?? "Name not informed";
+    company = json['company'] ?? "Company not informed";
+    blog = json['blog'];
+    location = json['location'] ?? "Location not informed";
+    email = json['email'] ?? "Email not informed";
+    hireable = json['hireable'] ?? "Hireable not informed";
+    bio = json['bio'] ?? "Bio not informed";
+    twitterUsername = json['twitter_username'] ?? "Twitter user not informed";
+    publicRepos = json['public_repos'];
+    publicGists = json['public_gists'];
+    followers = json['followers'];
+    following = json['following'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
@@ -79,6 +121,21 @@ class User {
     data['received_events_url'] = this.receivedEventsUrl;
     data['type'] = this.type;
     data['site_admin'] = this.siteAdmin;
+    data['name'] = this.name;
+    data['company'] = this.company;
+    data['blog'] = this.blog;
+    data['location'] = this.location;
+    data['email'] = this.email;
+    data['hireable'] = this.hireable;
+    data['bio'] = this.bio;
+    data['twitter_username'] = this.twitterUsername;
+    data['public_repos'] = this.publicRepos;
+    data['public_gists'] = this.publicGists;
+    data['followers'] = this.followers;
+    data['following'] = this.following;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
     return data;
   }
 }
+

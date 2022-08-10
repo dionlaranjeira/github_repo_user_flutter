@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:github_repo_user/model/user.dart';
+import 'package:github_repo_user/model/user_details.dart';
 import 'package:github_repo_user/view_model/user_data.dart';
 
 class UserDetailsPage extends StatefulWidget {
@@ -31,7 +32,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
               case ConnectionState.active:
                 return buildColumnLoading();
               case ConnectionState.done:
-                User user = userViewModel.user!;
+                UserDetail user = userViewModel.userDetail!;
                 return MediaQuery(
                   data: const MediaQueryData(),
                   child: Scaffold(
@@ -104,7 +105,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
   Center buildInforText(String text) =>
       const Center(child: Text('Internet connection problems.'));
 
-  Container containerInforsUser(BuildContext context, User user) {
+  Container containerInforsUser(BuildContext context, UserDetail user) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.9,
       decoration: const BoxDecoration(
@@ -118,7 +119,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.8,
             child: Text(
-              user.name!,
+              user.name! ?? "Not informed",
               textAlign: TextAlign.center,
               style: const TextStyle(
                   fontWeight: FontWeight.bold,
@@ -143,12 +144,12 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.code, size: 14),
+              const Icon(Icons.group, size: 14),
               const SizedBox(
                 width: 10,
               ),
               Text(
-                user.type!,
+                "Type: " + user.type!,
                 style: TextStyle(color: Colors.black.withOpacity(0.6)),
               ),
             ],
