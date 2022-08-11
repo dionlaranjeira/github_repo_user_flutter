@@ -3,6 +3,8 @@ import 'package:github_repo_user/model/user_details.dart';
 import 'package:github_repo_user/view/repos/user_repositorys.dart';
 import 'package:github_repo_user/view_model/user_data.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class UserDetailsPage extends StatefulWidget {
   final String userLoginId;
@@ -114,10 +116,10 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                           ElevatedButton(
                               onPressed: (){},
                               child: Row(
-                                children: [
-                                  const FaIcon(FontAwesomeIcons.heart),
-                                  const SizedBox(width: 8),
-                                  const Text("Favorites")
+                                children: const [
+                                  FaIcon(FontAwesomeIcons.heart),
+                                  SizedBox(width: 8),
+                                  Text("Favorites")
                                 ],
                               )
                           ),
@@ -125,10 +127,10 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                           ElevatedButton(
                               onPressed: (){},
                               child: Row(
-                                children: [
-                                  const FaIcon(FontAwesomeIcons.building),
-                                  const SizedBox(width: 8),
-                                  const Text("Organizations")
+                                children: const [
+                                  FaIcon(FontAwesomeIcons.building),
+                                  SizedBox(width: 8),
+                                  Text("Organizations")
                                 ],
                               )
                           ),

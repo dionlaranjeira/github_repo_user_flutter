@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:github_repo_user/model/repository.dart';
-import 'package:github_repo_user/util/colors_languages.dart';
 import 'package:github_repo_user/view_model/list_repositorys.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 class UserRepositorys extends StatefulWidget {
   final String userLoginId;
 
@@ -17,18 +16,12 @@ class UserRepositorys extends StatefulWidget {
 
 class _UserRepositorysState extends State<UserRepositorys> {
   ListRepositorysViewModel listRepositorysViewModel = ListRepositorysViewModel();
-  Map<String, dynamic> colors = ColorsLanguage.colors as Map<String, dynamic>;
 
-  // _retornarCor(String language) async {
-  //   String color = "0xffdddddd";
-  //   colors.forEach((key, value) {
-  //     if(key == language){
-  //       color = "0xff"+ value["color"].toString().replaceAll("#", "")  ;
-  //     }
-  //   });
-  //   print("color-->" + color);
-  //   return Color(int.parse(color));
-  // }
+  _openRepository(String url) async {
+    print(url);
+    final Uri uriUrl = Uri.parse(url);
+    await launchUrl(uriUrl);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,13 +52,12 @@ class _UserRepositorysState extends State<UserRepositorys> {
 
   MasonryGridView buildGridViewUsers(List<Repository> repos) {
     return MasonryGridView.count(
-      // controller: _scrollController,
       itemCount: repos.length,
       crossAxisCount: 1,
       itemBuilder: (_, index) {
         Repository repo = repos[index];
         return InkWell(
-          onTap: (){},
+          onTap: (){_openRepository(repo.htmlUrl!);},
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
             child: Column(

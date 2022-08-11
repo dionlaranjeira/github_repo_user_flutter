@@ -160,7 +160,7 @@ class Repository {
     name = json['name'];
     // fullName = json['full_name'];
     // private = json['private'];
-    // htmlUrl = json['html_url'];
+    htmlUrl = json['html_url'];
     description = json['description'];
     // fork = json['fork'];
     // url = json['url'];
