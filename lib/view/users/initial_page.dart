@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:github_repo_user/model/user.dart';
+import 'package:github_repo_user/util/custom_search_delegate.dart';
 import 'package:github_repo_user/view/users/components/card_user.dart';
 import 'package:github_repo_user/view_model/list_users.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -14,7 +15,9 @@ class InitialPage extends StatefulWidget {
 
 class _InitialPageState extends State<InitialPage> {
   ListUsersViewModel listUsersViewModel = ListUsersViewModel();
-  
+  String _query ="";
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,14 +29,19 @@ class _InitialPageState extends State<InitialPage> {
         title: Image.asset("assets/images/github.png", width: 150),
         actions: [
           IconButton(
-              onPressed: (){},
+              onPressed: () async {
+                String? resultQuery = await showSearch(context: context, delegate: CustomSearchDelegate());
+                setState(() {
+                  _query = resultQuery!;
+                });
+              },
               icon: const Icon(Icons.search, size: 35)),
 
         ],
         automaticallyImplyLeading: false,
       ),
       body: FutureBuilder(
-        future: listUsersViewModel.getRandomUsers(),
+        future: _query.isEmpty ? listUsersViewModel.getRandomUsers() : listUsersViewModel.getUserInformation(_query),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
