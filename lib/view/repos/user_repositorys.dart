@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:github_repo_user/model/repository.dart';
+import 'package:github_repo_user/model/use_repositorys.dart';
 import 'package:github_repo_user/view_model/list_repositorys.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -39,7 +39,7 @@ class _UserRepositorysState extends State<UserRepositorys> {
               case ConnectionState.active:
                 return buildColumnLoading();
               case ConnectionState.done:
-                List<Repository> repositorys = listRepositorysViewModel.repos!;
+                List<UseRepositorys> repositorys = listRepositorysViewModel.repos!;
                 return buildGridViewUsers(repositorys);
               case ConnectionState.none:
                 return buildInforText('Internet connection problems.');
@@ -50,12 +50,12 @@ class _UserRepositorysState extends State<UserRepositorys> {
         ));
   }
 
-  MasonryGridView buildGridViewUsers(List<Repository> repos) {
+  MasonryGridView buildGridViewUsers(List<UseRepositorys> repos) {
     return MasonryGridView.count(
       itemCount: repos.length,
       crossAxisCount: 1,
       itemBuilder: (_, index) {
-        Repository repo = repos[index];
+        UseRepositorys repo = repos[index];
         return InkWell(
           onTap: (){_openRepository(repo.htmlUrl!);},
           child: Padding(

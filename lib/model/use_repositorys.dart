@@ -1,4 +1,4 @@
-class Repository {
+class UseRepositorys {
   int? id;
   String? nodeId;
   String? name;
@@ -76,7 +76,7 @@ class Repository {
   int? watchers;
   String? defaultBranch;
 
-  Repository(
+  UseRepositorys(
       {this.id,
         this.nodeId,
         this.name,
@@ -154,7 +154,7 @@ class Repository {
         this.watchers,
         this.defaultBranch});
 
-  Repository.fromJson(Map<String, dynamic> json) {
+  UseRepositorys.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     // nodeId = json['node_id'];
     name = json['name'];

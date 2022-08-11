@@ -18,6 +18,20 @@ class _InitialPageState extends State<InitialPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(
+            color: Colors.grey
+        ),
+        title: Image.asset("assets/images/github.png", width: 150),
+        actions: [
+          IconButton(
+              onPressed: (){},
+              icon: const Icon(Icons.search, size: 35)),
+
+        ],
+        automaticallyImplyLeading: false,
+      ),
       body: FutureBuilder(
         future: listUsersViewModel.getRandomUsers(),
         builder: (context, snapshot) {
