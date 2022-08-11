@@ -161,7 +161,7 @@ class Repository {
     // fullName = json['full_name'];
     // private = json['private'];
     // htmlUrl = json['html_url'];
-    // description = json['description'];
+    description = json['description'];
     // fork = json['fork'];
     // url = json['url'];
     // forksUrl = json['forks_url'];
@@ -209,15 +209,15 @@ class Repository {
     // svnUrl = json['svn_url'];
     // homepage = json['homepage'];
     // size = json['size'];
-    // stargazersCount = json['stargazers_count'];
-    // watchersCount = json['watchers_count'];
-    // language = json['language'];
+    stargazersCount = json['stargazers_count'];
+    watchersCount = json['watchers_count'];
+    language = json['language'];
     // hasIssues = json['has_issues'];
     // hasProjects = json['has_projects'];
     // hasDownloads = json['has_downloads'];
     // hasWiki = json['has_wiki'];
     // hasPages = json['has_pages'];
-    // forksCount = json['forks_count'];
+    forksCount = json['forks_count'];
     // mirrorUrl = json['mirror_url'];
     // archived = json['archived'];
     // disabled = json['disabled'];
@@ -229,7 +229,7 @@ class Repository {
     // visibility = json['visibility'];
     // forks = json['forks'];
     // openIssues = json['open_issues'];
-    // watchers = json['watchers'];
+    watchers = json['watchers'];
     // defaultBranch = json['default_branch'];
   }
 
