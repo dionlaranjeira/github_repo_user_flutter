@@ -3,10 +3,10 @@ import 'package:github_repo_user/model/user.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:github_repo_user/view/users/user_details_page.dart';
 
-class CardUser extends StatelessWidget {
+class CardUserWidget extends StatelessWidget {
   final User user;
 
-  const CardUser({
+  const CardUserWidget({
     Key? key,
     required this.user,
   }) : super(key: key);

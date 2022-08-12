@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:github_repo_user/view/users/components/infor_text_widget.dart';
+import 'package:github_repo_user/view/users/components/loading_widget.dart';
 import 'package:github_repo_user/view_model/user_data.dart';
-import 'package:github_repo_user/view/users/components/user_details.dart';
+import 'package:github_repo_user/view/users/components/user_details_widget.dart';
 
 class UserDetailsPage extends StatefulWidget {
   final String userLoginId;
@@ -26,11 +28,10 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
-                return buildColumnLoading();
+                return LoadingWidget();
               case ConnectionState.active:
-                return buildColumnLoading();
+                return LoadingWidget();
               case ConnectionState.done:
-                // UserDetail user = userViewModel.userDetail!;
                 return Scaffold(
                     backgroundColor: const Color(0xffdddddd),
                     body: SingleChildScrollView(
@@ -38,28 +39,14 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                     ),
                   );
               case ConnectionState.none:
-                return buildInforText('Internet connection problems.');
+                return InforTextWidget(infor: 'Internet connection problems.');
               default:
-                return buildInforText('Problems receiving data.');
+                return InforTextWidget(infor: 'Problems receiving data.');
             }
           },
         ));
   }
 
-  Column buildColumnLoading() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: const [
-        Text(
-          "Loading data...",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        SizedBox(height: 30),
-        Center(child: CircularProgressIndicator()),
-      ],
-    );
-  }
 
   Container textAppBar(BuildContext context) {
     return Container(
@@ -70,9 +57,5 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
           style: const TextStyle(fontWeight: FontWeight.bold)),
     );
   }
-
-  Center buildInforText(String text) =>
-      const Center(child: Text('Internet connection problems.'));
-
 
 }
