@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.github.dionlaranjeira.github_repo_user">
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
    <application
         android:label="github_repo_user"
         android:name="${applicationName}"

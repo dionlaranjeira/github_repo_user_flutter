@@ -29,6 +29,7 @@ class CardUserWidget extends StatelessWidget {
                 user.login ?? "",
                 textAlign: TextAlign.center,
               ),
+              trailing: Icon(user.contactId != null ? Icons.person : Icons.person_add_disabled_rounded, size: 18,),
             ),
             Hero(
               tag: user.id!,
@@ -39,10 +40,12 @@ class CardUserWidget extends StatelessWidget {
                     imageUrl: user.avatarUrl!,
                     placeholder: (context, url) => const Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                        valueColor:AlwaysStoppedAnimation<Color>(Colors.white),
+                      ),
                     ),
                     errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
+                    const Icon(Icons.error),
                   ),
                 ),
               ),

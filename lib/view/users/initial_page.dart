@@ -58,9 +58,9 @@ class _InitialPageState extends State<InitialPage> {
             case ConnectionState.done:
               return _query.isEmpty ? buildGridViewUsers(listUsersViewModel.users!) : UseDetailsWidget(userViewModel: userViewModel);
             case ConnectionState.none:
-              return InforTextWidget(infor: 'Internet connection problems.');
+              return const InforTextWidget(infor: 'Internet connection problems.');
             default:
-              return InforTextWidget(infor: 'Problems receiving data.');
+              return const InforTextWidget(infor: 'Problems receiving data.');
           }
         },
       ),
@@ -70,14 +70,14 @@ class _InitialPageState extends State<InitialPage> {
 
   MasonryGridView buildGridViewUsers(List<User> users) {
     return MasonryGridView.count(
-              // controller: _scrollController,
-              itemCount: users.length,
-              crossAxisCount: 2,
-              itemBuilder: (_, index) {
-                User user = users[index];
-                return CardUserWidget(user: user);
-              },
-            );
+      // controller: _scrollController,
+      itemCount: users.length,
+      crossAxisCount: 2,
+      itemBuilder: (_, index) {
+        User user = users[index];
+        return CardUserWidget(user: user);
+      },
+    );
   }
 
 }

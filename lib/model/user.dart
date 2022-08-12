@@ -17,6 +17,7 @@ class User {
   String? receivedEventsUrl;
   String? type;
   bool? siteAdmin;
+  String? contactId;
 
   User(
       {this.login,

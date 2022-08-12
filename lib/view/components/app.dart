@@ -12,11 +12,25 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    return const MaterialApp(
-      title: 'Github users repo',
-      debugShowCheckedModeBanner: false,
-      home: InitialPage(),
-    );
+
+    const seedColor = Color(0xFF000000);
+    const secundaryColor = Color(0xFF1F51FF);
+
+
+    return MaterialApp(
+        theme: ThemeData(
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(
+                seedColor: seedColor,
+                primary: seedColor,
+                brightness: Brightness.dark,
+                secondary: secundaryColor
+            ),
+
+        ),
+        debugShowCheckedModeBanner: false,
+
+        home: const InitialPage());
 
   }
 }

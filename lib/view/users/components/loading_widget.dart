@@ -13,7 +13,9 @@ class LoadingWidget extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         SizedBox(height: 30),
-        Center(child: CircularProgressIndicator()),
+        Center(child: CircularProgressIndicator(
+          valueColor:AlwaysStoppedAnimation<Color>(Colors.white),
+        )),
       ],
     );
   }

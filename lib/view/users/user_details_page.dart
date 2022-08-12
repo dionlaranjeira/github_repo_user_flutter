@@ -39,9 +39,9 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                     ),
                   );
               case ConnectionState.none:
-                return InforTextWidget(infor: 'Internet connection problems.');
+                return const InforTextWidget(infor: 'Internet connection problems.');
               default:
-                return InforTextWidget(infor: 'Problems receiving data.');
+                return const InforTextWidget(infor: 'Problems receiving data.');
             }
           },
         ));

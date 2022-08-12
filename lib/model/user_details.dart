@@ -31,6 +31,7 @@ class UserDetail {
   int? following;
   String? createdAt;
   String? updatedAt;
+  String? contactId;
 
   UserDetail(
       {this.login,
