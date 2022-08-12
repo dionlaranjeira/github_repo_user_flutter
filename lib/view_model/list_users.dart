@@ -1,4 +1,5 @@
 import 'package:github_repo_user/model/user.dart';
+import 'package:github_repo_user/model/user_details.dart';
 import 'package:github_repo_user/services/github_api.dart';
 
 class ListUsersViewModel {
@@ -19,14 +20,14 @@ class ListUsersViewModel {
     users = listUsers;
   }
 
+  UserDetail? userDetail;
   Future<void> getUserInformation(String userLoginId) async {
-    print("Chamado--> getUserInformation");
-    users?.clear();
+    print("Chamado--> getUserInformations");
+    print("_query-->" + userLoginId);
     final apiResult = await _api.getUserInformation(userLoginId);
-    User u = User.fromJson(apiResult);
-    print("user-->" + u.toString());
-    users?.add(u);
-    print("users-->" + users.toString());
+    print("apiResult-->" + apiResult.toString());
+    userDetail = UserDetail.fromJson(apiResult);
+    print("useDetail-->" + userDetail!.id.toString());
   }
 
 }

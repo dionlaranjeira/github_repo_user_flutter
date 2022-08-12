@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:github_repo_user/model/user_details.dart';
-import 'package:github_repo_user/view/repos/user_repositorys.dart';
 import 'package:github_repo_user/view_model/user_data.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:github_repo_user/view/users/components/user_details.dart';
 
 class UserDetailsPage extends StatefulWidget {
   final String userLoginId;
@@ -24,8 +22,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
           title: textAppBar(context),
         ),
         body: FutureBuilder(
-          // future: userViewModel.getUserInformation(widget.userLoginId),
-          future: userViewModel.getUserInformation("dionlaranjeira"),
+          future: userViewModel.getUserInformation(widget.userLoginId),
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
@@ -33,88 +30,11 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
               case ConnectionState.active:
                 return buildColumnLoading();
               case ConnectionState.done:
-                UserDetail user = userViewModel.userDetail!;
+                // UserDetail user = userViewModel.userDetail!;
                 return Scaffold(
                     backgroundColor: const Color(0xffdddddd),
                     body: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                              Row(
-                                children: [
-                                  CircleAvatar(
-                                      maxRadius: 30,
-                                      backgroundColor: Theme.of(context).dividerColor,
-                                      backgroundImage:
-                                      NetworkImage(user.avatarUrl!)),
-                                  const SizedBox(width: 16),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(user.name!.toUpperCase()),
-                                      Text(user.login!),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                        Text(user.bio!),
-                          Row(children: [
-                            const FaIcon(FontAwesomeIcons.building),
-                            SizedBox(width: 8),
-                            Text(user.company!),
-                            SizedBox(width: 16),
-                            const FaIcon(FontAwesomeIcons.locationDot),
-                            SizedBox(width: 8),
-                            Text(user.location!),
-                          ],),
-
-                          Row(children: [
-                            const FaIcon(FontAwesomeIcons.link),
-                            Text(user.blog!),
-                          ],),
-
-                          Row(children: [
-                            const FaIcon(FontAwesomeIcons.envelope),
-                            Text(user.email!),
-                          ],),
-
-                          Row(children: [
-                            const FaIcon(FontAwesomeIcons.link),
-                            Text(user.blog!),
-                          ],),
-
-                          Row(children: [
-                          const FaIcon(FontAwesomeIcons.twitter),
-                          Text("@" + user.twitterUsername!),
-                        ],),
-
-                          Row(children: [
-                            const FaIcon(FontAwesomeIcons.user),
-                            Text(user.followers.toString(), style: TextStyle(fontWeight: FontWeight.bold),),
-                            Text(" Followers - "),
-                            Text(user.following.toString(), style: TextStyle(fontWeight: FontWeight.bold),),
-                            Text(" Following"),
-                          ],),
-
-                          ElevatedButton(
-                              onPressed:  () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context)=>UserRepositorys(userLoginId: "dionlaranjeira"))),
-                              child: Row(
-                                children: [
-                                  const FaIcon(FontAwesomeIcons.folder),
-                                  const SizedBox(width: 8),
-                                  const Text("Repositories"),
-                                  Expanded(child: Container()),
-                                  Text(user.publicRepos.toString())
-                                ],
-                              )
-                          ),
-
-                          Text("Github user since " + user.createdAt!)
-
-                        ],
-                      ),
+                      child: UseDetailsWidget(userViewModel: userViewModel),
                     ),
                   );
               case ConnectionState.none:

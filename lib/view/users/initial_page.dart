@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:github_repo_user/model/user.dart';
 import 'package:github_repo_user/util/custom_search_delegate.dart';
 import 'package:github_repo_user/view/users/components/card_user.dart';
+import 'package:github_repo_user/view/users/components/user_details.dart';
 import 'package:github_repo_user/view_model/list_users.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:github_repo_user/view_model/user_data.dart';
 
 class InitialPage extends StatefulWidget {
 
@@ -15,7 +17,8 @@ class InitialPage extends StatefulWidget {
 
 class _InitialPageState extends State<InitialPage> {
   ListUsersViewModel listUsersViewModel = ListUsersViewModel();
-  String _query ="";
+  UserViewModel userViewModel = UserViewModel();
+  String _query = "";
 
 
   @override
@@ -41,14 +44,14 @@ class _InitialPageState extends State<InitialPage> {
         automaticallyImplyLeading: false,
       ),
       body: FutureBuilder(
-        future: _query.isEmpty ? listUsersViewModel.getRandomUsers() : listUsersViewModel.getUserInformation(_query),
+        future: _query.isEmpty ? listUsersViewModel.getRandomUsers() : userViewModel.getUserInformation(_query),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
             case ConnectionState.active:
               return buildColumnLoading();
             case ConnectionState.done:
-              return buildGridViewUsers(listUsersViewModel.users!);
+              return _query.isEmpty ? buildGridViewUsers(listUsersViewModel.users!) : UseDetailsWidget(userViewModel: userViewModel);
             case ConnectionState.none:
               return buildInforText('Internet connection problems.');
             default:
