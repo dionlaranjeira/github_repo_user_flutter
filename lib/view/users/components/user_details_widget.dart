@@ -101,10 +101,11 @@ class UseDetailsWidget extends StatelessWidget {
   }
 
   Row buildRowInfor(BuildContext context ,FaIcon icon, String information) {
-    return Row(children: [
+    return Row(
+      children: [
             icon,
             const SizedBox(width: 8),
-            Text(information, style: Theme.of(context).textTheme.headline2),
+            Flexible(child: Text(information, style: Theme.of(context).textTheme.headline2)),
           ],);
   }
 }
