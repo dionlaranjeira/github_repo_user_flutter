@@ -26,7 +26,17 @@ class App extends StatelessWidget {
                 brightness: Brightness.dark,
                 secondary: secundaryColor
             ),
-
+          textTheme: const TextTheme(
+              headline1: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+              ),
+            headline2: TextStyle(
+              fontSize: 18,
+              color: Colors.white,
+            ),
+          ),
         ),
         debugShowCheckedModeBanner: false,
 

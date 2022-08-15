@@ -35,7 +35,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                 return Scaffold(
                     backgroundColor: const Color(0xffdddddd),
                     body: SingleChildScrollView(
-                      child: UseDetailsWidget(userViewModel: userViewModel),
+                      child: UseDetailsWidget(userDetail: userViewModel.userDetail!),
                     ),
                   );
               case ConnectionState.none:

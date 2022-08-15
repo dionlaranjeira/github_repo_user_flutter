@@ -88,7 +88,7 @@ class UserDetail {
     siteAdmin = json['site_admin'];
     name = json['name'] ?? "Name not informed";
     company = json['company'] ?? "Company not informed";
-    blog = json['blog'];
+    blog = json['blog'] ?? "Blog not informed";
     location = json['location'] ?? "Location not informed";
     email = json['email'] ?? "Email not informed";
     hireable = json['hireable'] ?? "Hireable not informed";

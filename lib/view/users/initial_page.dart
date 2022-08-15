@@ -56,7 +56,7 @@ class _InitialPageState extends State<InitialPage> {
             case ConnectionState.active:
               return LoadingWidget();
             case ConnectionState.done:
-              return _query.isEmpty ? buildGridViewUsers(listUsersViewModel.users!) : UseDetailsWidget(userViewModel: userViewModel);
+              return _query.isEmpty ? buildGridViewUsers(listUsersViewModel.users!) : UseDetailsWidget(userDetail: userViewModel.userDetail!);
             case ConnectionState.none:
               return const InforTextWidget(infor: 'Internet connection problems.');
             default:
